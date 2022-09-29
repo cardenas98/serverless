@@ -1,0 +1,61 @@
+
+service: app
+
+frameworkVersion: '3'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+  apiGateway:
+    shouldStartNameWithService: true
+  environment:
+    DB_CONNECTION: "mysql"
+    DB_DATABASE: "serverless"
+    DB_HOST: "127.0.0.0.1"
+    DB_PASSWORD: ''
+    DB_PORT: "3306"
+
+functions:
+  healtcheck:
+    handler: handler.healtcheck #devuelve el estado de la API
+    events:
+      - http:
+          path: /
+          method: GET
+          cors: true
+  getSwapi:
+    handler: handler.getSwapi #devuelve todo el listado
+    events:
+      - http:
+          path: /swapi/{name}
+          method: GET
+          cors: true
+  getSearchSwapi:
+    handler: handler.getSearchSwapi #devuelve el valor segun la búsqueda, id -> swapi/people/id, otro -> swapi/people_search/valor
+    events:
+      - http:
+          path: /swapi/{name}/{id}
+          method: GET
+          cors: true
+  createUser:
+    handler: handler.createUser
+    events:
+      - http:
+          path: /user/create
+          method: post
+          cors: true
+    
+  getUser:
+    handler: handler.getUser
+    events:
+      - http:
+          path: /user
+          method: GET
+          cors: true
+      
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
