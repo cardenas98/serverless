@@ -1,6 +1,11 @@
 const { sequelize } = require('./../config/database')
 const { DataTypes } = require('sequelize')
 
+/**
+ * 
+ * @class
+ */
+
 const Users = sequelize.define(
     'users',
     {

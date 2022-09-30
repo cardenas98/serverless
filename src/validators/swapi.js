@@ -28,16 +28,4 @@ const validatorGetId = [
 
 ]
 
-const validatorSearch = [
-
-    check("name").exists().notEmpty(),
-    check("id").exists().notEmpty(),
-    (req, res, next) => {
-
-        return validateResults(req, res, next)
-
-    }
-
-]
-
-module.exports = { validatorGet, validatorGetId, validatorSearch }
+module.exports = { validatorGet, validatorGetId }

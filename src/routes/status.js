@@ -4,6 +4,7 @@ const router = express.Router()
 
 /**
  * @method GET
+ * @return {object} Devuelve estado de la aplicación
  */
 
 router.get('/', function(req, res, next) {

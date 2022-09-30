@@ -28,9 +28,7 @@ class UserController {
 
             dataUser.set('password', undefined, { strict: false })
 
-            const data = { dataUser }
-
-            res.send({data})
+            res.send(dataUser)
 
         }catch(e){
 
