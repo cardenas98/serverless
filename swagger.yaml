@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info:
+  title: Serverless - NodeJS
+  description: Reto técnico serverless framework + nodejs
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/dev/
+tags:
+  - name: /
+    description: Este endpoint verifica el estado de la aplicación
+  - name: /swapi
+    description: Este endpoint es inválido, debe ser acompañado de un parámetro más
+  - name: /user
+    description: Este endpoint es inválido, debe ser acompañado de un parámetro más
+paths:
+  /:
+    get:
+      tags:
+        - /
+      
+  /swapi/{name}:
+    get:
+      parameters:
+        - people
+        - films
+        - starships
+        - vehicles
+        - species
+        - planets
+      
+      
+  /swapi/{name}/{id}:
+    get:
+      parameters:
+        name:
+          - people 
+          - films
+          - starships
+          - vehicles
+          - species
+          - planets
+        id: [1, "juan", "etc"]
+      
+    description: Endpoint tiene 2 funciones de busqueda, segun el ID, o el atributo de la respuesta.
+    example: 
+      id:
+        /people/1
+      atributo:
+        /people_search/juan
+      
+  /user/:
+    get:
+      tags:
+      - /
+  /user/create:
+    post:
+      tags:
+      - create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BodyCreate"
+        required: true
+      response:
+        200:
+          description: (Ok) La información del usuario se guardo correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExitoUserPost"
+          
+components:
+    schemas:
+      BodyCreate:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Nombre del usuario
+          password:
+            type: string
+            description: Contraseña del usuario
+      ExitoUserPost:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          updatedAt:
+            type: datetime
+          createdAt:
+            type: datetime
+        
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
