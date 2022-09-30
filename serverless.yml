@@ -11,12 +11,6 @@ provider:
   region: us-east-1
   apiGateway:
     shouldStartNameWithService: true
-  environment:
-    DB_CONNECTION: "mysql"
-    DB_DATABASE: "serverless"
-    DB_HOST: "127.0.0.0.1"
-    DB_PASSWORD: ''
-    DB_PORT: "3306"
 
 functions:
   healtcheck:
